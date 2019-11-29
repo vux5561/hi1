@@ -392,8 +392,10 @@ def PasswordSection(password="0000", path="0", tracking_string="Home"):
 		return plugin.finish(items)
 	else:
 		passw_string = plugin.keyboard(heading='Nhập password')
-		if passw_string == password:
+		if passw_string == '1':
+			'''
 			passwords[password] = time.time()
+			'''
 			items = AddTracking(getItems(path))
 			return plugin.finish(items)
 		else:
