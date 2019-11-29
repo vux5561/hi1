@@ -387,10 +387,12 @@ def PasswordSection(password="0000", path="0", tracking_string="Home"):
 	plugin.add_sort_method(xbmcplugin.SORT_METHOD_UNSORTED)
 	plugin.add_sort_method(xbmcplugin.SORT_METHOD_LABEL_IGNORE_THE)
 
-	if '1' == '1':
+	if password in passwords and (time.time() - passwords[password] < 1800):
 		items = AddTracking(getItems(path))
 		return plugin.finish(items)
 	else:
+		xbmc.executebuiltin('Notification("%s", "%s", "%d", "%s")' %
+			                    ("Mat khau", password, 10000, ''))
 		passw_string = plugin.keyboard(heading='Nhập password')
 		if passw_string == password:
 			passwords[password] = time.time()
