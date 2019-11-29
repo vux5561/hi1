@@ -387,7 +387,7 @@ def PasswordSection(password="0000", path="0", tracking_string="Home"):
 	plugin.add_sort_method(xbmcplugin.SORT_METHOD_UNSORTED)
 	plugin.add_sort_method(xbmcplugin.SORT_METHOD_LABEL_IGNORE_THE)
 
-	if password in passwords and (time.time() - passwords[password] > 1800):
+	if '1' == '1':
 		items = AddTracking(getItems(path))
 		return plugin.finish(items)
 	else:
