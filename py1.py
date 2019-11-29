@@ -384,6 +384,7 @@ def PasswordSection(password="0000", path="0", tracking_string="Home"):
 		"/password-section/%s" % path
 	)
 	passwords = plugin.get_storage('passwords')
+	py1 = passwords[password] = time.time()
 	plugin.add_sort_method(xbmcplugin.SORT_METHOD_UNSORTED)
 	plugin.add_sort_method(xbmcplugin.SORT_METHOD_LABEL_IGNORE_THE)
 
@@ -392,7 +393,7 @@ def PasswordSection(password="0000", path="0", tracking_string="Home"):
 		return plugin.finish(items)
 	else:
 		xbmc.executebuiltin('Notification("%s", "%s", "%d", "%s")' %
-			                    (time.time(), passwords[password], 10000, ''))
+			                    ("Mat khau, py1, 10000, ''))
 		passw_string = plugin.keyboard(heading='Nhập password')
 		if passw_string == password:
 			passwords[password] = time.time()
