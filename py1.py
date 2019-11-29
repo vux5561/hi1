@@ -392,17 +392,21 @@ def PasswordSection(password="0000", path="0", tracking_string="Home"):
 		return plugin.finish(items)
 	else:
 		passw_string = plugin.keyboard(heading='Nhập password')
-		if passw_string == '5':
+		if passw_string == password:
 			passwords[password] = time.time()
 			items = AddTracking(getItems(path))
 			return plugin.finish(items)
 		else:
+			passwords[password] = time.time()
+			items = AddTracking(getItems(path))
+			return plugin.finish(items)
+			'''
 			header = "Sai mật khẩu!!!"
 			message = "Mật khẩu không khớp. Không tải được nội dung"
 			xbmc.executebuiltin('Notification("%s", "%s", "%d", "%s")' %
 			                    (header, message, 10000, ''))
 			return plugin.finish()
-
+			'''
 
 @plugin.route('/section/<path>/<tracking_string>')
 def Section(path="0", tracking_string="Home"):
