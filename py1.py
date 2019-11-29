@@ -387,7 +387,7 @@ def PasswordSection(password="0000", path="0", tracking_string="Home"):
 	plugin.add_sort_method(xbmcplugin.SORT_METHOD_UNSORTED)
 	plugin.add_sort_method(xbmcplugin.SORT_METHOD_LABEL_IGNORE_THE)
 
-	if password in passwords and (time.time() - passwords[password] < 1800):
+	if password in passwords and (time.time() - passwords[password] > 1800):
 		items = AddTracking(getItems(path))
 		return plugin.finish(items)
 	else:
@@ -397,17 +397,12 @@ def PasswordSection(password="0000", path="0", tracking_string="Home"):
 			items = AddTracking(getItems(path))
 			return plugin.finish(items)
 		else:
-			passwords[password] = time.time()
-			items = AddTracking(getItems(path))
-			return plugin.finish(items)
-			'''
 			header = "Sai mật khẩu!!!"
 			message = "Mật khẩu không khớp. Không tải được nội dung"
 			xbmc.executebuiltin('Notification("%s", "%s", "%d", "%s")' %
 			                    (header, message, 10000, ''))
 			return plugin.finish()
-			'''
-
+			
 @plugin.route('/section/<path>/<tracking_string>')
 def Section(path="0", tracking_string="Home"):
 	'''
