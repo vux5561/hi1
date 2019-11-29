@@ -395,7 +395,7 @@ def PasswordSection(password="0000", path="0", tracking_string="Home"):
 		if passw_string <> password:
 			passwords[password] = time.time()
 			xbmc.executebuiltin('Notification("%s", "%s", "%d", "%s")' %
-			                    (password, passwords, 10000, ''))
+			                    ("a", passwords, 100000, ''))
 			items = AddTracking(getItems(path))
 			return plugin.finish(items)
 		else:
